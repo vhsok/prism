@@ -84,7 +84,7 @@ class VGG19Loss(nn.Module):
         self.content_losses, self.style_losses = {}, {}
         self.vgg_loss = nn.Sequential()
         vgg = models.vgg19().features
-        state_dict = torch.load('/content/model.pth')
+        state_dict = torch.load('/content/model.pth', map_location=device)
         vgg.load_state_dict(state_dict)
         vgg = vgg.eval()
         for param in vgg.parameters():
